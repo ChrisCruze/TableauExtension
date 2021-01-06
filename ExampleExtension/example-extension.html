@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+ <html>
+   <head>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <title>Hello Extensions</title>`
+
+     <!-- jQuery -->
+     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+     <!-- Bootstrap -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+
+     <!-- Tableau Extensions API Library  -->
+     <!-- library is in the /lib directory -->
+     <script src="https://cdn.jsdelivr.net/gh/tableau/extensions-api/lib/tableau.extensions.1.latest.js"></script>
+
+     <!-- Your JavaScript code that uses the Extensions API goes here -->
+     <script src="./hello-extension.js"></script>
+     </head>
+     <body>
+       <div class="container">
+         <div>
+           <h1>Hello Extensions!</h1>
+           <p id="resultBox" class="lead">Not Initialized</p>
+           <button id="initializeButton" class="btn btn-primary">Initialize Extensions API</button>
+         </div>
+       </div>
+
+       <script>
+       $(document).ready(function() {
+
+  // Hook up an event handler for the load button click.
+  // Wait to initialize until the button is clicked.
+  $("#initializeButton").click(function() {
+
+    // Disable the button after it's been clicked
+    $("#initializeButton").prop('disabled', true);
+
+    tableau.extensions.initializeAsync().then(function() {
+
+      // Initialization succeeded! Get the dashboard
+      var dashboard = tableau.extensions.dashboardContent.dashboard;
+
+      // Display the name of dashboard in the UI
+      $("#resultBox").html("I'm running in a dashboard named <strong>" + dashboard.name + "</strong>");
+    }, function(err) {
+
+      // something went wrong in initialization
+      $("#resultBox").html("Error while Initializing: " + err.toString());
+    });
+  });
+});
+       </script>
+     </body>
+ </html>

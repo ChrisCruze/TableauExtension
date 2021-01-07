@@ -299,10 +299,39 @@
     $('#retract-menu-button').on('click', function () {
       $("#additional-chapters").toggleClass('hidden')
     })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     tableau.extensions.initializeAsync().then(function() {
+
+      
+
+      tableau.extensions.dashboardContent.dashboard.getParametersAsync().then(function (parameters) {
+        parameters.forEach(function (p) {
+          p.addEventListener(tableau.TableauEventType.ParameterChanged, onParameterChange);
+
+          
+        });
+      });
+
+
+
 
       // Initialization succeeded! Get the dashboard
       var dashboard = tableau.extensions.dashboardContent.dashboard;
+      select_chapter_from_text(dashboard.name)
 
       // Display the name of dashboard in the UI
       $("#main-breadcrumb").html( dashboard.name);
@@ -310,7 +339,27 @@
 
       // something went wrong in initialization
       // $("#resultBox").html("Error while Initializing: " + err.toString());
+    
     });
+
+
+
+
+
+  function onParameterChange (parameterChangeEvent) {
+    parameterChangeEvent.getParameterAsync().then(function (param) {
+      append_selection(param.name + ":" + param.currentValue.formattedValue)
+    });
+  }
+
+
+
+
+
+
+
+
+
 });
 
 

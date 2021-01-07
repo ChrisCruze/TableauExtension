@@ -54,7 +54,23 @@
 
 
         .body-wrapper{
-            width:1000px
+            width:1000px;
+        }
+
+        .additional-chapters{
+          background-color: #f3f3f4;
+        }
+
+
+        .home-page-nav-retractable{
+          background-color: white;
+          color:#0177c1;
+        }
+
+
+        .home-page-nav-retractable-none{
+          background-color: #f3f3f4;
+          color:#f3f3f4;
         }
 
 
@@ -73,7 +89,7 @@
     </style>
 </head>
 
-<body>
+<body style="background-color:transparent">
   <div class="body-wrapper">
     <div class="row">
         <div class="col-lg-12 home-page-header-bar">
@@ -83,39 +99,39 @@
     <div class="container-fluidX">
     <div class="row wrapper border-bottom white-bg" >
         <div class="col-lg-12">
-            <div class="row navigation-row overflow-hidden">
+            <div class="row navigation-row">
                 <div class="col-xs-2 home-page-nav home-page-nav-home dark-blue">
-                        <span class="home-page-text">
+                        <span class="nav-text home-page-text">
                             Home Page
                         </span>
                 </div>
                 <div class="col-xs-2 home-page-nav home-page-chapter-nav">
-                    <span class="home-page-chapter-nav-text">
+                    <span class="nav-text home-page-chapter-nav-text">
                         Business Performance
                     </span>
                 </div>
                 <div class="col-xs-2 home-page-nav home-page-chapter-nav">
-                    <span class="home-page-chapter-nav-text">
+                    <span class="nav-text home-page-chapter-nav-text">
                         Operational Metrics
                     </span>
                 </div>
                 <div class="col-xs-2 home-page-nav home-page-chapter-nav">
-                    <span class="home-page-chapter-nav-text">
+                    <span class="nav-text home-page-chapter-nav-text">
                         Key Financial Results
                     </span>
                 </div>
                 <div class="col-xs-2 home-page-nav home-page-chapter-nav">
-                    <span class="home-page-chapter-nav-text">
+                    <span class="nav-text home-page-chapter-nav-text">
                         Client Relationships and Stakeholders
                     </span>
                 </div>
                 <div class="col-xs-2 home-page-nav home-page-chapter-nav">
-                    <span class="home-page-chapter-nav-text">
+                    <span class="nav-text home-page-chapter-nav-text">
                         Digital Engagement
                     </span>
                 </div>
                 <div class="col-xs-2 home-page-nav home-page-chapter-nav">
-                    <span class="home-page-chapter-nav-text">
+                    <span class="nav-text home-page-chapter-nav-text">
                         Advisor Metrics
                     </span>
                 </div>
@@ -123,8 +139,52 @@
         </div>
     </div>
     </div>
-    <div class="row wrapper border-bottom white-bg page-heading">
+    <div id="additional-chapters" class="row wrapper border-bottom  additional-chapters hidden">
         <div class="col-lg-12">
+            <div class="row navigation-row">
+                <div class="col-xs-2 home-page-nav-retractable home-page-nav home-page-nav-home dark-blue">
+                        <span class="nav-text home-page-text">
+                            JPMWM Scorecard
+                        </span>
+                </div>
+                <div class="col-xs-2 home-page-nav-retractable home-page-nav home-page-chapter-nav">
+                    <span class="nav-text home-page-chapter-nav-text">
+                        Net New Money
+                    </span>
+                </div>
+                <div class="col-xs-2 home-page-nav-retractable home-page-nav home-page-chapter-nav">
+                    <span class="nav-text home-page-chapter-nav-text">
+                        Account Opening
+                    </span>
+                </div>
+                <div class="col-xs-2 home-page-nav-retractable home-page-nav home-page-chapter-nav">
+                    <span class="nav-text home-page-chapter-nav-text">
+                        P&L
+                    </span>
+                </div>
+                <div class="col-xs-2 home-page-nav-retractable-none home-page-nav home-page-chapter-nav">
+
+                </div>
+                <div class="col-xs-2 home-page-nav-retractable-none home-page-nav home-page-chapter-nav">
+                    <span class="nav-text home-page-chapter-nav-text">
+                        
+                    </span>
+                </div>
+                <div class="col-xs-2 home-page-nav-retractable home-page-nav home-page-chapter-nav">
+                    <span class="nav-text home-page-chapter-nav-text">
+                        Advisor Headcount
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-xs-1" style="width:10px">
+            <a class="collapse-link" id="retract-menu-button">
+                <i class="fa fa-chevron-down"></i>
+            </a>
+            </div>
+            <div class="col-xs-10">
             <ol class="breadcrumb">
                 <li>
                     <a href="">Home</a>
@@ -142,6 +202,7 @@
                     <a href="" id="">Double Click 2</a>
                 </li>
             </ol>
+            </div>
         </div>
     </div>
 
@@ -181,6 +242,11 @@
        $(document).ready(function() {
 
 
+        
+
+    $('#retract-menu-button').on('click', function () {
+      $("#additional-chapters").toggleClass('hidden')
+    })
     tableau.extensions.initializeAsync().then(function() {
 
       // Initialization succeeded! Get the dashboard
